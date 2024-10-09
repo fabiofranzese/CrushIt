@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct avengersApp: App {
+    var str : String = "Fabio"
     var body: some Scene {
         WindowGroup {
             ContentView()
