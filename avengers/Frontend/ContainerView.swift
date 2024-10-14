@@ -19,10 +19,6 @@ struct ContainerView: View {
                 PlanView()
                     .environmentObject(viewmodel)
             }
-            Tab("Prova", systemImage: "person"){
-                DayInsertView()
-                    .environmentObject(viewmodel)
-            }
         }
     }
 }
