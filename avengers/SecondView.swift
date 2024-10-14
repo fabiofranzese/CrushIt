@@ -6,12 +6,6 @@ struct PlanView: View {
         NavigationView {
             ZStack {
                 VStack(alignment: .leading) {
-                    Text("Your Plan")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.horizontal)
-                        .padding(.top)
-                    
                     PlanStageRow(stageName: "Stage 1: Pre-contemplation", status: "Done", statusColor: .blue)
                     
                     PlanStageRow(stageName: "Stage 2: Contemplation", status: "Done", statusColor: .blue)
@@ -24,31 +18,31 @@ struct PlanView: View {
                     
                     Spacer()
                 }
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()  // Dismiss the view
-                        }) {
-                            HStack {
-                                Image(systemName: "chevron.backward")
-                                Text("Back")
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                    }
-                }
+                .padding(.top, 80)
+                .background(Color(red: 227 / 255, green: 227 / 255, blue: 232 / 255))
 
-
-            }
-            .background(
-                Image("background")
-                    .resizable()
-                    .scaledToFit()
-                    .edgesIgnoringSafeArea(.bottom)
-                    .rotationEffect(.degrees(180))
+                VStack {
+                    Spacer()
+                    Image("background")
+                        .resizable()
+                        .scaledToFit()
+                        .rotationEffect(.degrees(180))
+                        .frame(height: 240)
+                        .ignoresSafeArea(edges: .bottom)
                     
-            )
+                }
+            }
+            .navigationTitle("title")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Your Plan")
+                        .padding(.top, 60)
+                        .font(.system(size: 58))
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                }
+            }
         }
     }
 }

@@ -4,25 +4,12 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .center) {
             ZStack {
-                Image("background")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 300)
-                    .clipped()
-                    .offset(x: -50, y: -100)
-                
-                Image("background")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 300)
-                    .clipped()
-                    .offset(x: 0, y: -100)
+                BackgroundView()
                 
                 VStack {
                     Text("Stage 3, Week 16")
                         .font(.system(size: 36))
                         .fontWeight(.bold)
-                        
                     
                     Text("Today's Goal: ")
                         .font(.system(size: 24))
@@ -30,10 +17,8 @@ struct ContentView: View {
                     Text("8 cigarettes")
                         .font(.system(size: 24))
                         .foregroundColor(.blue)
-                    
                 }
                 .padding(.top, -150)
-                
                 .multilineTextAlignment(.center)
             }
             
