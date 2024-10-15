@@ -6,19 +6,21 @@ struct PlanView: View {
         NavigationView {
             ZStack {
                 VStack(alignment: .leading) {
-                    PlanStageRow(stageName: "Stage 1: Pre-contemplation", status: "Done", statusColor: .blue)
+                    // Stage rows with system icons at the end
+                    PlanStageRow(stageName: "Stage 1: Pre-contemplation", systemImageName: "checkmark.circle.fill", imageColor: .blue)
                     
-                    PlanStageRow(stageName: "Stage 2: Contemplation", status: "Done", statusColor: .blue)
+                    PlanStageRow(stageName: "Stage 2: Contemplation", systemImageName: "checkmark.circle.fill", imageColor: .blue)
                     
-                    PlanStageRow(stageName: "Stage 3: Preparation", status: "In progress", statusColor: .gray)
+                    PlanStageRow(stageName: "Stage 3: Preparation", systemImageName: "hourglass.circle.fill", imageColor: .gray)
                     
-                    PlanStageRow(stageName: "Stage 4: Action", status: "Upcoming", statusColor: .gray)
-                    
-                    PlanStageRow(stageName: "Stage 5: Maintenance", status: "Upcoming", statusColor: .gray)
+                    PlanStageRow(stageName: "Stage 4: Action", systemImageName: "lock.circle.fill", imageColor: .gray)
+                        .opacity(0.5)
+                    PlanStageRow(stageName: "Stage 5: Maintenance", systemImageName: "lock.circle.fill", imageColor: .gray)
+                         .opacity(0.5)
                     
                     Spacer()
                 }
-                .padding(.top, 80)
+                .padding(.top, 80) // Moved down a little
                 .background(Color(red: 227 / 255, green: 227 / 255, blue: 232 / 255))
 
                 VStack {
@@ -29,38 +31,32 @@ struct PlanView: View {
                         .rotationEffect(.degrees(180))
                         .frame(height: 240)
                         .ignoresSafeArea(edges: .bottom)
-                    
                 }
             }
-            .navigationTitle("title")
+            .navigationTitle("Your Plan")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Your Plan")
-                        .padding(.top, 60)
-                        .font(.system(size: 58))
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                }
-            }
         }
     }
 }
 
 struct PlanStageRow: View {
     var stageName: String
-    var status: String
-    var statusColor: Color
+    var systemImageName: String
+    var imageColor: Color
     
     var body: some View {
         HStack {
+            // Stage name on the left
             Text(stageName)
                 .font(.system(size: 18))
                 .foregroundColor(.black)
+            
             Spacer()
-            Text(status)
-                .font(.system(size: 16))
-                .foregroundColor(statusColor)
+            
+            // System image icon on the right
+            Image(systemName: systemImageName)
+                .foregroundColor(imageColor)
+                .font(.system(size: 24))
         }
         .padding()
         .background(Color(.systemGray6))
