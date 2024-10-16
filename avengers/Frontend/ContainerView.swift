@@ -10,16 +10,8 @@ import SwiftUI
 struct ContainerView: View {
     @StateObject private var viewmodel = ViewModel()
     var body: some View {
-        TabView {
-            Tab("Home", systemImage: "house") {
-                HomeView()
-                    .environmentObject(viewmodel)
-            }
-            Tab("Plan", systemImage: "calendar") {
-                PlanView()
-                    .environmentObject(viewmodel)
-            }
-        }
+        HomeView()
+            .environmentObject(viewmodel)
     }
 }
 

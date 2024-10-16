@@ -13,6 +13,7 @@ struct Day : Identifiable {
     var cigs : Int
     var mood : String
     var activities : [String]
+    var diary : String
     mutating func add_day(cigarettes: Int, mood_new: String, acts: [String]){
         cigs = cigarettes
         mood = mood_new
@@ -20,17 +21,10 @@ struct Day : Identifiable {
     }
 }
 
-struct Week: Identifiable {
-    var id = UUID()
-    var stage : Int
-    var num : Int
-    var maxcigs : Int
-    var days : [Day] = []
-}
-
 struct Stage : Identifiable {
     var id = UUID()
     var num : Int
     var name : String
     var description : String
+    var interval : DateInterval
 }

@@ -11,16 +11,13 @@ struct DayInsertView: View {
     @EnvironmentObject var viewmodel : ViewModel
     var body: some View {
         NavigationStack{
-            ForEach(Array(viewmodel.days.keys), id: \.self) {date in
-                Text(String(describing: viewmodel.days[date]!.num) + " " + String(describing: viewmodel.days[date]!.activities[0]))
-            }
             Button("Add_day") {
                 viewmodel.CurrDayCount += 1
-                viewmodel.days[viewmodel.StartInterval + viewmodel.CurrDayCount*86400] = Day(num: viewmodel.CurrDayCount, cigs: 5, mood: "Great", activities: ["Basketball"])
+                viewmodel.days[viewmodel.StartInterval + viewmodel.CurrDayCount*86400] = Day(num: viewmodel.CurrDayCount, cigs: 5, mood: "Great", activities: ["Basketball"], diary: "Felt Great")
             }
             Text("\(viewmodel.StartInterval + viewmodel.CurrDayCount*86400)")
             NavigationLink{
-                DayView()
+                DayView(day: Day(num: 5, cigs: 3, mood: "dfjkf", activities: ["fdjfk"], diary: "Felt Great"))
             } label: {
                 Text("aa")
             }
@@ -30,4 +27,5 @@ struct DayInsertView: View {
 
 #Preview {
     DayInsertView()
+        .environmentObject(ViewModel())
 }
