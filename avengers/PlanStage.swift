@@ -8,9 +8,9 @@ struct PlanView: View {
                 VStack(alignment: .leading) {
                     // Stage rows with system icons at the end
                     PlanStageRow(stageName: "Stage 1: Pre-contemplation", systemImageName: "checkmark.circle.fill", imageColor: .blue)
-                    
+                        .opacity(0.7)
                     PlanStageRow(stageName: "Stage 2: Contemplation", systemImageName: "checkmark.circle.fill", imageColor: .blue)
-                    
+                        .opacity(0.7)
                     PlanStageRow(stageName: "Stage 3: Preparation", systemImageName: "hourglass.circle.fill", imageColor: .gray)
                     
                     PlanStageRow(stageName: "Stage 4: Action", systemImageName: "lock.circle.fill", imageColor: .gray)

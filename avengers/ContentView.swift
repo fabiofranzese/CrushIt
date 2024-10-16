@@ -4,7 +4,7 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .center) {
             ZStack {
-                BackgroundView()
+                
                 
                 VStack {
                     Text("Stage 3, Week 16")
