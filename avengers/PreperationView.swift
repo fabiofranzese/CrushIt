@@ -1,89 +1,203 @@
 import SwiftUI
 
 struct StageDetailView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @State private var selectedDate: Date?
+    @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
+    @State private var selectedMonth: Int = Calendar.current.component(.month, from: Date())
+    @State private var stageDescription: String = ""
+    @State private var isPickerVisible = false
 
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                // Stage Title
                 Text("Stage 3: Preparation")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.horizontal)
                     .padding(.top)
 
-                // Stage Description
                 Text("STAGE DESCRIPTION")
                     .font(.headline)
                     .padding(.horizontal)
                     .padding(.top, 10)
 
-                Text("JDKFHDJKFHJDKFHDSFKJHJKSDHF")
+                TextEditor(text: $stageDescription)
+                    .frame(height: 150)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
                     .padding(.horizontal)
-                    .padding(.bottom)
+                    .padding(.bottom, 10)
 
-                // Calendar Icon
                 HStack {
-                    Image(systemName: "calendar")
-                        .font(.largeTitle)
-                        .foregroundColor(.blue)
+                    Button(action: {
+                        previousMonth()
+                    }) {
+                        Image(systemName: "chevron.left")
+                    }
+
                     Spacer()
-                    Text("October 2024")
+
+                    Text("\(Calendar.current.monthSymbols[selectedMonth - 1]) \(selectedYear)")
                         .font(.headline)
-                        .padding(.trailing)
+                        .onTapGesture {
+                            isPickerVisible.toggle()
+                        }
+
+                    Spacer()
+
+                    Button(action: {
+                        nextMonth()
+                    }) {
+                        Image(systemName: "chevron.right")
+                    }
                 }
                 .padding()
 
-                // Calendar Grid
-                CalendarView()
-                    .frame(height: 300)
-                    .padding(.horizontal)
+                if isPickerVisible {
+                    VStack {
+                        Picker("Select Month", selection: $selectedMonth) {
+                            ForEach(1..<13, id: \.self) { month in
+                                Text(Calendar.current.monthSymbols[month - 1]).tag(month)
+                            }
+                        }
+                        .pickerStyle(WheelPickerStyle())
+
+                        Picker("Select Year", selection: $selectedYear) {
+                            ForEach(1900...2100, id: \.self) { year in
+                                Text(String(year)).tag(year)
+                            }
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                    }
+                    .frame(height: 200)
+                    .background(Color(.systemGray6))
+                }
+
+                CalendarView(selectedDate: $selectedDate, selectedYear: selectedYear, selectedMonth: selectedMonth, closePicker: {
+                    isPickerVisible = false
+                })
+                .frame(height: 300)
+                .padding(.horizontal)
 
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()  // Dismiss the view
-                    }) {
-                    }
-                }
+                // Toolbar content if needed
             }
-            .background(Color(.systemGroupedBackground)) 
+            .background(Color(.systemGroupedBackground))
+        }
+    }
+
+    private func previousMonth() {
+        if selectedMonth == 1 {
+            selectedMonth = 12
+            selectedYear -= 1
+        } else {
+            selectedMonth -= 1
+        }
+    }
+
+    private func nextMonth() {
+        if selectedMonth == 12 {
+            selectedMonth = 1
+            selectedYear += 1
+        } else {
+            selectedMonth += 1
         }
     }
 }
 
 struct CalendarView: View {
+    @Binding var selectedDate: Date?
+    var selectedYear: Int
+    var selectedMonth: Int
+    var closePicker: () -> Void
+
+    let calendar = Calendar.current
+    let dateFormatter = DateFormatter()
+
+    init(selectedDate: Binding<Date?>, selectedYear: Int, selectedMonth: Int, closePicker: @escaping () -> Void) {
+        self._selectedDate = selectedDate
+        self.selectedYear = selectedYear
+        self.selectedMonth = selectedMonth
+        self.closePicker = closePicker
+        dateFormatter.dateFormat = "d"
+    }
+
     var body: some View {
-        // Simple grid to represent the calendar
-        let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
-        let dates = Array(1...31) // Simple representation of days
+        let days = getDaysInSelectedMonth(year: selectedYear, month: selectedMonth)
 
         VStack {
-            // Day headers
             HStack {
-                ForEach(days, id: \.self) { day in
+                ForEach(["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"], id: \.self) { day in
                     Text(day)
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity)
                 }
             }
 
-            // Dates
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             LazyVGrid(columns: columns) {
-                ForEach(0..<dates.count, id: \.self) { index in
-                    Text("\(dates[index])")
-                        .frame(width: 40, height: 40)
-                        .background(index == 9 ? Color.blue : Color.clear) // Highlight selected date
-                        .foregroundColor(index == 9 ? .white : .black)
-                        .cornerRadius(20)
+                ForEach(days, id: \.self) { day in
+                    if day.isPlaceholder {
+                        Text("")
+                            .frame(width: 40, height: 40)
+                    } else {
+                        Text(day.day)
+                            .frame(width: 40, height: 40)
+                            .background(isSelected(day) ? Color.blue : Color.clear)
+                            .foregroundColor(isSelected(day) ? .white : .black)
+                            .cornerRadius(20)
+                            .onTapGesture {
+                                selectedDate = day.date
+                                closePicker() // Close the picker when a date is selected
+                            }
+                    }
                 }
             }
         }
+    }
+
+    private func getDaysInSelectedMonth(year: Int, month: Int) -> [DayViewModel] {
+        var components = DateComponents()
+        components.year = year
+        components.month = month
+        let startOfMonth = calendar.date(from: components)!
+
+        let firstDayOfWeek = calendar.component(.weekday, from: startOfMonth) - 1
+
+        let range = calendar.range(of: .day, in: .month, for: startOfMonth)!
+        var days: [DayViewModel] = []
+
+        for _ in 0..<firstDayOfWeek {
+            days.append(DayViewModel(day: "", date: Date(), isPlaceholder: true))
+        }
+
+        for day in range {
+            let date = calendar.date(bySetting: .day, value: day, of: startOfMonth)!
+            days.append(DayViewModel(day: "\(day)", date: date))
+        }
+
+        return days
+    }
+
+    private func isSelected(_ day: DayViewModel) -> Bool {
+        guard let selectedDate = selectedDate, !day.isPlaceholder else { return false }
+        return calendar.isDate(selectedDate, inSameDayAs: day.date)
+    }
+}
+
+struct DayViewModel: Hashable {
+    let day: String
+    let date: Date
+    let isPlaceholder: Bool
+
+    init(day: String, date: Date, isPlaceholder: Bool = false) {
+        self.day = day
+        self.date = date
+        self.isPlaceholder = isPlaceholder
     }
 }
 

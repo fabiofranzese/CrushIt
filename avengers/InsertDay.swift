@@ -5,22 +5,23 @@ struct NewPageView: View {
     @State private var diaryEntry: String = ""
     @State private var selectedCigarettes = "None"
     @State private var selectedMood: String? = nil
+    @State private var selectedDay: Date? = nil
     @State private var currentDate = Date() // Track the current date
-    @State private var selectedDay: Date? = nil // Track the selected day
     
     let cigarettesOptions = ["None", "1-5", "6-10", "10+"]
     let moods = ["😡", "😞", "😟", "😩", "😊"]
     
-    // Function to get the days of the month
-    func getDaysOfMonth() -> [Int] {
+    // Function to get the days of the current month
+    func getDaysOfMonth() -> [Date] {
         let calendar = Calendar.current
         let range = calendar.range(of: .day, in: .month, for: currentDate)!
-        return Array(range)
+        return range.compactMap { day -> Date? in
+            return calendar.date(bySetting: .day, value: day, of: currentDate)
+        }
     }
     
     var body: some View {
         ZStack {
-            // Background color
             Color(red: 227 / 255, green: 227 / 255, blue: 232 / 255)
                 .ignoresSafeArea()
             
@@ -33,18 +34,18 @@ struct NewPageView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(getDaysOfMonth(), id: \.self) { day in
-                            Text("\(day)")
+                            Text("\(Calendar.current.component(.day, from: day))")
                                 .font(.title)
                                 .frame(width: 40, height: 40)
-                                .foregroundColor(selectedDay == Calendar.current.date(bySetting: .day, value: day, of: currentDate) ? .white : .black)
+                                .foregroundColor(selectedDay == day ? .white : .black)
                                 .background(
-                                    selectedDay == Calendar.current.date(bySetting: .day, value: day, of: currentDate)
+                                    selectedDay == day
                                     ? Color.purple
                                     : Color.clear
                                 )
                                 .clipShape(Circle())
                                 .onTapGesture {
-                                    selectedDay = Calendar.current.date(bySetting: .day, value: day, of: currentDate)
+                                    selectedDay = day
                                 }
                         }
                     }
@@ -52,7 +53,6 @@ struct NewPageView: View {
                 }
                 .padding(.top, 20)
                 
-                // Today's Cigarettes section with Menu
                 VStack(alignment: .leading) {
                     Menu {
                         ForEach(cigarettesOptions, id: \.self) { option in
@@ -101,7 +101,6 @@ struct NewPageView: View {
                 }
                 .padding(.top, 10)
                 
-                // Today's activity
                 VStack(alignment: .leading) {
                     Text("Today's activity")
                         .font(.headline)
