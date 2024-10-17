@@ -111,7 +111,8 @@ struct DayInsertView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Text((num(max: viewmodel.cigs(day: viewmodel.dayInterval(cigsperday: viewmodel.cigsperday, StartDate: viewmodel.StartDate), cigsperday: viewmodel.cigsperday), n: cigs)))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.accent)
+                                .bold()
                             Image(systemName: "arrow.up.and.down.circle")
                                 .foregroundColor(.gray)
                         }
