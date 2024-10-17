@@ -79,7 +79,7 @@ struct DayInsertView: View {
                     HStack {
                         ForEach(daysInWeek(for: Date()), id: \.self) { day in
                             Text("\(Calendar.current.component(.day, from: day))")
-                                .font(.title)
+                                .font(.title2)
                                 .frame(width: 40, height: 40)
                                 .foregroundStyle(Calendar.current.isDateInToday(day)
                                                  ? Color.white
