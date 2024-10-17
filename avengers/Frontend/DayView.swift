@@ -26,21 +26,26 @@ struct DayView: View {
                             .font(.system(size: 24))
                     }
                 }
-            } header: {Text("CIGARETTES SMOKED")}
+            } header: {Text("Cigarettes Smoked").font(.headline)
+                .foregroundStyle(.black)}
             Section{
                 Text("\(day.mood)")
             } header: {
-                Text("MOOD")
+                Text("Mood")
+                    .font(.headline)
+                    .foregroundStyle(.black)
             }
             Section{
-                Text("\(day.activities[0]) and \(day.activities[1])")
+                Text("\(day.activities)")
             } header: {
-                Text("ACTIVITIES")
+                Text("Activities").font(.headline)
+                    .foregroundStyle(.black)
             }
             Section{
                 Text("\(day.diary)")
             } header: {
-                Text("DIARY")
+                Text("Diary").font(.headline)
+                    .foregroundStyle(.black)
             }
         }
         .navigationTitle("\(viewmodel.formattedDate(Date(timeInterval: TimeInterval((day.num - 1)*86400), since: viewmodel.StartDate)))")
@@ -49,6 +54,6 @@ struct DayView: View {
 }
 
 #Preview {
-    DayView(day : Day(num: 1, cigs: 5, mood: "😁", activities: ["Listened to Music", "Played Basketball"], diary: "Felt Great"))
+    DayView(day : Day(num: 1, cigs: 5, mood: "😁", activities: "Listened to Music, Played Basketball", diary: "Felt Great"))
         .environmentObject(ViewModel())
 }

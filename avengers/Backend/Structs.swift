@@ -12,9 +12,9 @@ struct Day : Identifiable {
     var num : Int
     var cigs : Int
     var mood : String
-    var activities : [String]
+    var activities : String
     var diary : String
-    mutating func add_day(cigarettes: Int, mood_new: String, acts: [String]){
+    mutating func add_day(cigarettes: Int, mood_new: String, acts: String){
         cigs = cigarettes
         mood = mood_new
         activities = acts

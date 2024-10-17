@@ -49,7 +49,7 @@ struct StageDetailView: View {
                             insert = false
                         }
                 }else {
-                    DayView(day: viewmodel.days[Calendar.current.dateComponents([.day], from: viewmodel.StartDate, to: date).day!] ?? Day(num: 1, cigs: 1, mood: "fd", activities: ["df"], diary: "Felt Great"))
+                    DayView(day: viewmodel.days[Calendar.current.dateComponents([.day], from: viewmodel.StartDate, to: date).day!] ?? Day(num: 1, cigs: 1, mood: "fd", activities: "df", diary: "Felt Great"))
                 }
             }
             .background(Color(.systemGray6))
