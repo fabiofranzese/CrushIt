@@ -9,13 +9,12 @@ It helps users in three ways:
 
 # Screens
 
-<img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen1.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.14.14.png" alt="Screen 1" width="603" height="1311">
-![](https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen1.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.14.14.png){width=603px height=1311px}
+<img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen1.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.14.14.png" alt="Screen 1" width="452.25" height="983.25">
 
 ---
 
-![](https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen2.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.17.28.png)
+<img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen2.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.17.28.png" alt="Screen 1" width="452.25" height="983.25">
 
 ---
 
-![](https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen3.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.18.30.png)
+<img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen3.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.18.30.png" alt="Screen 1" width="452.25" height="983.25">
