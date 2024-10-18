@@ -8,12 +8,12 @@ It helps users in three ways:
 - Provides a graphical representation of the state they are at
 
 # Screens
-![]([https://github.com/fabiofranzese/CrushIt/blob/main/](https://github.com/fabiofranzese/CrushIt/blob/main/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.14.14.png))
+![](https://github.com/fabiofranzese/CrushIt/tree/main/avengers/Assets.xcassets/Screen1.imageset)
 
 ---
 
-![](https://github.com/fabiofranzese/CrushIt/blob/main/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.17.28.png)
+![](https://github.com/fabiofranzese/CrushIt/tree/main/avengers/Assets.xcassets/Screen2.imageset)
 
 ---
 
-![](https://github.com/fabiofranzese/CrushIt/blob/main/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.18.30.png)
+![](https://github.com/fabiofranzese/CrushIt/tree/main/avengers/Assets.xcassets/Screen1.imageset)
