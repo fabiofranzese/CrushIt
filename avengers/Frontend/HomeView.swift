@@ -21,6 +21,11 @@ struct HomeView: View {
                     .font(.title2)
                     .foregroundColor(.accentColor)
                     .bold()
+                ZStack{
+                    Circle().frame(width: UIScreen.main.bounds.width * 0.80)
+                        .foregroundStyle(RadialGradient(colors: [.accent, .red], center: .center, startRadius: 0, endRadius: CGFloat(Double(viewmodel.dayInterval(StartDate: viewmodel.StartDate)) * 3.5)))
+                        .blur(radius: 20)
+                }.padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
                 Spacer()
                 .sheet(isPresented: $viewmodel.showModal){
                     DayInsertView()

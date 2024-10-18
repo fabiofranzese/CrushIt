@@ -18,7 +18,7 @@ struct StageDetailView: View {
             VStack() {
                 Form {
                     Section {
-                        Text("Your \(stage.name) Stage starts on \(viewmodel.formattedDate(stage.interval.start)) and ends on \(viewmodel.formattedDate(stage.interval.end)).\n\(stage.description)").foregroundColor(Color.accentColor)
+                        Text("Your \(stage.name) Stage starts on \(viewmodel.formattedDate(stage.interval.start)) and ends on \(viewmodel.formattedDate(stage.interval.end)).").foregroundColor(Color.accentColor)
                     } header: {Text("STAGE DESCRIPTION")}
                     Section{DatePicker(
                         "Start Date",

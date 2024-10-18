@@ -44,6 +44,23 @@ struct DayInsertView: View {
         return "\(n)"
     }
     
+    func getWeekDay(day: Date)-> String{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEE"
+            let weekDay = dateFormatter.string(from: day)
+            return weekDay
+      }
+    
+    func getdayinfo(viewmodel : ViewModel) -> Day {
+        let interval = viewmodel.dayInterval(StartDate: viewmodel.StartDate)
+        if (viewmodel.days[interval] ?? nil != nil){
+            return viewmodel.days[interval]!
+        } else{
+            return Day(num: interval, cigs: 0, mood: "", activities: "", diary: "")
+        }
+    }
+
+    
     var body: some View {
         ScrollView{
             ZStack{
@@ -56,7 +73,7 @@ struct DayInsertView: View {
                 HStack{
                     Spacer()
                     Button{
-                        let interval = viewmodel.dayInterval(cigsperday: viewmodel.cigsperday, StartDate: viewmodel.StartDate)
+                        let interval = viewmodel.dayInterval(StartDate: viewmodel.StartDate)
                         viewmodel.days[interval] = Day(num: interval, cigs: cigs, mood: moo, activities: activities, diary: diary)
                         viewmodel.dayDone = true
                     } label: {
@@ -78,19 +95,22 @@ struct DayInsertView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(daysInWeek(for: Date()), id: \.self) { day in
-                            Text("\(Calendar.current.component(.day, from: day))")
-                                .font(.title2)
-                                .frame(width: 40, height: 40)
-                                .foregroundStyle(Calendar.current.isDateInToday(day)
-                                                 ? Color.white
-                                                 : Color.black)
-                                .bold()
-                                .background(
-                                    Calendar.current.isDateInToday(day)
-                                    ? Color.accent
-                                    : Color.clear
-                                )
-                                .clipShape(Circle())
+                            VStack{
+                                Text("\(getWeekDay(day: day))")
+                                Text("\(Calendar.current.component(.day, from: day))")
+                                    .font(.title2)
+                                    .frame(width: 40, height: 40)
+                                    .foregroundStyle(Calendar.current.isDateInToday(day)
+                                                     ? Color.white
+                                                     : Color.black)
+                                    .bold()
+                                    .background(
+                                        Calendar.current.isDateInToday(day)
+                                        ? Color.accent
+                                        : Color.clear
+                                    )
+                                    .clipShape(Circle())
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -99,8 +119,8 @@ struct DayInsertView: View {
                 
                 VStack(alignment: .leading) {
                     Menu {
-                        ForEach(0..<(viewmodel.cigs(day: viewmodel.dayInterval(cigsperday: viewmodel.cigsperday, StartDate: viewmodel.StartDate), cigsperday: viewmodel.cigsperday)+2)) { option in
-                            Button(num(max: viewmodel.cigs(day: viewmodel.dayInterval(cigsperday: viewmodel.cigsperday, StartDate: viewmodel.StartDate), cigsperday: viewmodel.cigsperday), n: option)) {
+                        ForEach(0..<(viewmodel.cigs(day: viewmodel.dayInterval(StartDate: viewmodel.StartDate), cigsperday: viewmodel.cigsperday)+2)) { option in
+                            Button(num(max: viewmodel.cigs(day: viewmodel.dayInterval(StartDate: viewmodel.StartDate), cigsperday: viewmodel.cigsperday), n: option)) {
                                 cigs = option
                             }
                         }
@@ -110,7 +130,7 @@ struct DayInsertView: View {
                                 .font(.headline)
                                 .foregroundColor(.black)
                             Spacer()
-                            Text((num(max: viewmodel.cigs(day: viewmodel.dayInterval(cigsperday: viewmodel.cigsperday, StartDate: viewmodel.StartDate), cigsperday: viewmodel.cigsperday), n: cigs)))
+                            Text((num(max: viewmodel.cigs(day: viewmodel.dayInterval(StartDate: viewmodel.StartDate), cigsperday: viewmodel.cigsperday), n: cigs != 0 ? cigs : getdayinfo(viewmodel: viewmodel).cigs)))
                                 .foregroundColor(.accent)
                                 .bold()
                             Image(systemName: "arrow.up.and.down.circle")
@@ -148,7 +168,7 @@ struct DayInsertView: View {
                 
                 Form{
                     Section{
-                        TextEditor(text: $activities).foregroundColor(Color.accentColor).frame(minHeight: 100)
+                        TextEditor(text:  $activities).foregroundColor(Color.accentColor).frame(minHeight: 100)
                         
                     }
                 }

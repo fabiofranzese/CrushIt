@@ -165,7 +165,7 @@ class ViewModel : ObservableObject {
                 s = stage.num
                 w = Calendar.current.dateComponents([.day],
                                                     from: stage.interval.start,
-                                                    to: Date()).day! / 7
+                                                    to: Date()).day! / 7 + 1
             }
         }
         return "Stage \(s), Week \(w)"
@@ -186,7 +186,7 @@ class ViewModel : ObservableObject {
         return 10
     }
     
-    func dayInterval(cigsperday: [ClosedRange<Int> : Int], StartDate: Date) -> Int{
+    func dayInterval(StartDate: Date) -> Int{
         return Calendar.current.dateComponents([.day], from: StartDate, to: Date()).day!
     }
 }
