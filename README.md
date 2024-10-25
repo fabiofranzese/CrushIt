@@ -9,6 +9,11 @@ It helps users in three ways:
 
 # Screens
 
+![Screen 1](https://github.com/fabiofranzese/CrushIt/blob/main/Screens/app_preview.png)
+![Screen 2](https://github.com/fabiofranzese/CrushIt/blob/main/Screens/Different-screens.png)
+![Screen 3](https://github.com/fabiofranzese/CrushIt/blob/main/Screens/Preperation.png)
+![Screen 4](https://github.com/fabiofranzese/CrushIt/blob/main/Screens/activity_preview.jpeg)
+
 <img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen1.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.14.14.png" alt="Screen 1" width="452.25" height="983.25">
 
 ---
