@@ -14,12 +14,10 @@ It helps users in three ways:
 <img src="https://github.com/fabiofranzese/CrushIt/blob/main/Screens/Preperation.png" alt="Screen 3" width="300" height="600">
 <img src="https://github.com/fabiofranzese/CrushIt/blob/main/Screens/activity_preview.jpeg" alt="Screen 4" width="300" height="600">
 
-<img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen1.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.14.14.png" alt="Screen 1" width="300" height="600">
 
----
 
-<img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen2.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.17.28.png" alt="Screen 1" width="300" height="600">
-
----
-
-<img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen3.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.18.30.png" alt="Screen 1" width="300" height="600">
+<div style="display: flex; gap: 10px;">
+    <img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen1.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.14.14.png" alt="Screen 5" width="300" height="600">
+    <img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen2.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.17.28.png" alt="Screen 6" width="300" height="600">
+    <img src="https://github.com/fabiofranzese/CrushIt/blob/main/avengers/Assets.xcassets/Screen3.imageset/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-18%20at%2011.18.30.png" alt="Screen 7" width="300" height="600">
+</div>
