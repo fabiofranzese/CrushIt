@@ -11,5 +11,3 @@ It helps users in three ways:
 
 ![Screen 1](https://github.com/fabiofranzese/CrushIt/blob/main/Screens/app_preview.png)
 ![Screen 2](https://github.com/fabiofranzese/CrushIt/blob/main/Screens/Different-screens.png)
-<img src="https://github.com/fabiofranzese/CrushIt/blob/main/Screens/Preperation.png" alt="Screen 3" width="300" height="600">
-<img src="https://github.com/fabiofranzese/CrushIt/blob/main/Screens/activity_preview.jpeg" alt="Screen 4" width="300" height="600">
